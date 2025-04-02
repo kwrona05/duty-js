@@ -28,7 +28,7 @@ function AbsentTeachers({ teachers, setTeachers }) {
       {/* Jeśli formularz jest rozwinięty, wyświetl go */}
       {isFormOpen && (
         <div className="form-container">
-          <h3>Mark Absent Teachers</h3>
+          <h3>Zaznacz nieobecnych nauczycieli</h3>
           <ul>
             {teachers.map((teacher) => (
               <li key={teacher.id} className="teacher-item">
