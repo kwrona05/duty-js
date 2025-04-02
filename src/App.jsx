@@ -1,102 +1,145 @@
-import { useState } from "react";
-import teachersData from "./data/teachers.json";
+import { useState, useEffect } from "react";
 import dutyData from "./data/duty.json";
+import teacherData from "./data/teachers.json";
+import "./App.scss";
 
-const Home = () => {
-  const [duty, setDuty] = useState(dutyData);
+function DutyScheduler() {
+  const [duties, setDuties] = useState(dutyData);
+  const [teachers, setTeachers] = useState(teacherData);
+  const [selectedDuty, setSelectedDuty] = useState(null);
+  const [selectedTeacher, setSelectedTeacher] = useState("");
+  const [availableTeachers, setAvailableTeachers] = useState([]);
 
-  const getAvailableTeachers = (day, hour, place) => {
-    return teachersData.filter((teacher) => {
-      const hasLesson = teacher.lessonsPlan.some(
-        (lesson) =>
-          lesson.day === day && hour >= lesson.from && hour <= lesson.to
-      );
+  useEffect(() => {
+    if (selectedDuty !== null) {
+      filterAvailableTeachers(duties[selectedDuty]);
+    }
+  }, [selectedDuty]);
 
-      const isAlreadyAssigned = duty.some(
-        (d) =>
-          d.teacher?.id === teacher.id &&
-          d.day === day &&
-          d.hour === hour &&
-          d.place === place
-      );
-
-      return !hasLesson && !isAlreadyAssigned;
-    });
+  const handleSelectDuty = (index) => {
+    setSelectedDuty(index);
+    setSelectedTeacher("");
   };
 
-  const assignTeacher = (day, hour, place, teacherId) => {
-    const selectedTeacher = teachersData.find(
-      (t) => t.id === parseInt(teacherId)
-    );
+  const filterAvailableTeachers = (duty) => {
+    const available = teachers.filter((teacher) => {
+      const hasLesson = teacher.lessonsPlan.some(
+        (lesson) =>
+          lesson.day === duty.day &&
+          isOverlapping(lesson.from, lesson.to, duty.hour)
+      );
 
-    if (!selectedTeacher) {
-      console.error(`Nauczyciel o ID ${teacherId} nie istnieje!`);
-      return;
+      const hasDuty = teacher.duty.some(
+        (d) => d.day === duty.day && d.hour === duty.hour
+      );
+
+      return !hasLesson && !hasDuty;
+    });
+
+    setAvailableTeachers(available);
+  };
+
+  const handleAssignTeacher = () => {
+    if (selectedDuty !== null && selectedTeacher) {
+      const updatedDuties = [...duties];
+      updatedDuties[selectedDuty].teacher = selectedTeacher;
+      setDuties(updatedDuties);
+
+      const updatedTeachers = teachers.map((teacher) => {
+        if (`${teacher.name} ${teacher.surname}` === selectedTeacher) {
+          return {
+            ...teacher,
+            duty: [
+              ...teacher.duty,
+              {
+                day: updatedDuties[selectedDuty].day,
+                hour: updatedDuties[selectedDuty].hour,
+              },
+            ],
+            isAvailable: false,
+          };
+        }
+        return teacher;
+      });
+
+      setTeachers(updatedTeachers);
+      setSelectedTeacher("");
+      setSelectedDuty(null);
     }
+  };
 
-    console.log(
-      `Przypisano nauczyciela ${selectedTeacher.name} ${selectedTeacher.surname} do dyżuru: ${day}, ${hour}, ${place}`
-    );
+  const isOverlapping = (from, to, hour) => {
+    const parseTime = (t) => t.split(":").map(Number);
+    const [fromH, fromM] = parseTime(from);
+    const [toH, toM] = parseTime(to);
+    const [hourH, hourM] = parseTime(hour);
 
-    setDuty((prevDuty) =>
-      prevDuty.map((dutyItem) =>
-        dutyItem.day === day &&
-        dutyItem.hour === hour &&
-        dutyItem.place === place
-          ? { ...dutyItem, teacher: { ...selectedTeacher } }
-          : dutyItem
-      )
-    );
+    const fromMinutes = fromH * 60 + fromM;
+    const toMinutes = toH * 60 + toM;
+    const hourMinutes = hourH * 60 + hourM;
+
+    return hourMinutes >= fromMinutes && hourMinutes < toMinutes;
   };
 
   return (
-    <div>
-      <h1>Dyzury</h1>
-
+    <div className="duty-scheduler">
+      <h2>Przypisywanie dyżurów</h2>
       <table>
         <thead>
           <tr>
             <th>Dzień</th>
             <th>Godzina</th>
             <th>Miejsce</th>
-            <th>Dostępni nauczyciele</th>
+            <th>Nauczyciel</th>
+            <th>Dyżur</th>
+            <th>Zaznacz dyżur</th>
           </tr>
         </thead>
         <tbody>
-          {duty.map((dutyItem, index) => (
-            <tr key={index}>
-              <td>{dutyItem.day}</td>
-              <td>{dutyItem.hour}</td>
-              <td>{dutyItem.place}</td>
+          {duties.map((duty, index) => (
+            <tr key={index} className="duty-row">
+              <td>{duty.day}</td>
+              <td>{duty.hour}</td>
+              <td>{duty.place}</td>
+              <td>{duty.teacher || "Brak"}</td>
               <td>
-                <select
-                  onChange={(e) => {
-                    const selectedTeacherId = e.target.value;
-                    assignTeacher(
-                      dutyItem.day,
-                      dutyItem.hour,
-                      dutyItem.place,
-                      selectedTeacherId
-                    );
-                  }}
-                  value={dutyItem?.teacher?.id?.toString() ?? ""} // Poprawione
-                >
-                  <option value="" disabled>
-                    Wybierz nauczyciela
-                  </option>
-                  {getAvailableTeachers(
-                    dutyItem.day,
-                    dutyItem.hour,
-                    dutyItem.place
-                  ).map((teacher) => (
-                    <option
-                      key={teacher.id}
-                      value={teacher.id.toString()} // Konwersja na string
+                {selectedDuty !== null && (
+                  <div className="assign-teacher">
+                    <select
+                      value={selectedTeacher}
+                      onChange={(e) => setSelectedTeacher(e.target.value)}
                     >
-                      {teacher.name} {teacher.surname}
-                    </option>
-                  ))}
-                </select>
+                      <option value="">Wybierz nauczyciela</option>
+                      {availableTeachers.length === 0 ? (
+                        <option value="">Brak dostępnych nauczycieli</option>
+                      ) : (
+                        availableTeachers.map((teacher) => (
+                          <option
+                            key={teacher.id}
+                            value={`${teacher.name} ${teacher.surname}`}
+                          >
+                            {teacher.name} {teacher.surname}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                    <button
+                      className="button secondary"
+                      onClick={handleAssignTeacher}
+                      disabled={!selectedTeacher}
+                    >
+                      Przypisz
+                    </button>
+                  </div>
+                )}
+              </td>
+              <td>
+                <button
+                  className="button primary"
+                  onClick={() => handleSelectDuty(index)}
+                >
+                  Wybierz
+                </button>
               </td>
             </tr>
           ))}
@@ -104,6 +147,6 @@ const Home = () => {
       </table>
     </div>
   );
-};
+}
 
-export default Home;
+export default DutyScheduler;
