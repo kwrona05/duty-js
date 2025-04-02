@@ -3,10 +3,10 @@
 "name": "Katarzyna",
 "surname": "Krasowska",
 "lessonsPlan": [
-  {"day": "wtorek", "from": "11:40", "to": "13:20"},
+  {"day": "tuesday", "from": "11:40", "to": "13:20"},
   {"day": "środa", "from": "10:45", "to": "15:10"},
-  {"day": "czwartek", "from": "8:55", "to": "14:20"},
-  {"day": "piątek", "from": "8:55", "to": "12:25"}
+  {"day": "thursday", "from": "8:55", "to": "14:20"},
+  {"day": "friday", "from": "8:55", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -15,9 +15,9 @@
 "name": "Bohdana", 
 "surname": "Boruk", 
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "11:30"},
-  {"day": "wtorek", "from": "12:25", "to": "16:00"},
-  {"day": "czwartek", "from": "7:50", "to": "11:30"}
+  {"day": "monday", "from": "7:50", "to": "11:30"},
+  {"day": "tuesday", "from": "12:25", "to": "16:00"},
+  {"day": "thursday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
@@ -26,7 +26,7 @@
 "name": "Łukasz",
 "surname": "Dębowski",
 "lessonsPlan": [
-  {"day": "wtorek", "from": "12:25", "to": "16:00"},
+  {"day": "tuesday", "from": "12:25", "to": "16:00"},
   {"day": "wednesday", "from": "12:25", "to": "16:00"}
 ],
 "duty": [],
@@ -36,11 +36,11 @@
 "name": "Renata",
 "surname": "Długosz",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "15:10"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "15:10"},
-  {"day": "czwartek", "from": "7:50", "to": "14:20"},
-  {"day": "piątek", "from": "7:50", "to": "13:20"}
+  {"day": "thursday", "from": "7:50", "to": "14:20"},
+  {"day": "friday", "from": "7:50", "to": "13:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -49,11 +49,11 @@
 "name": "Agnieszka",
 "surname": "Dyła",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "8:45", "to": "12:25"},
-  {"day": "wtorek", "from": "7:50", "to": "12:25"},
+  {"day": "monday", "from": "8:45", "to": "12:25"},
+  {"day": "tuesday", "from": "7:50", "to": "12:25"},
   {"day": "wednesday", "from": "8:45", "to": "14:20"},
-  {"day": "czwartek", "from": "8:45", "to": "12:25"},
-  {"day": "piątek", "from": "7:50", "to": "11:30"}
+  {"day": "thursday", "from": "8:45", "to": "12:25"},
+  {"day": "friday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
@@ -62,8 +62,8 @@
 "name": "Anna",
 "surname": "Dymek",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "9:40", "to": "11:30"},
-  {"day": "wtorek", "from": "10:35", "to": "12:25"},
+  {"day": "monday", "from": "9:40", "to": "11:30"},
+  {"day": "tuesday", "from": "10:35", "to": "12:25"},
   {"day": "wednesday", "from": "7:50", "to": "12:25"}
 ],
 "duty": [],
@@ -73,11 +73,11 @@
 "name": "Magdalena",
 "surname": "Foryt",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "13:20"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "13:20"},
   {"day": "wednesday", "from": "8:45", "to": "13:20"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "12:25"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -86,11 +86,11 @@
 "name": "Małgorzata",
 "surname": "Jop",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "11:30"},
-  {"day": "wtorek", "from": "7:50", "to": "11:30"},
+  {"day": "monday", "from": "7:50", "to": "11:30"},
+  {"day": "tuesday", "from": "7:50", "to": "11:30"},
   {"day": "wednesday", "from": "7:50", "to": "11:30"},
-  {"day": "czwartek", "from": "8:45", "to": "12:25"},
-  {"day": "piątek", "from": "8:45", "to": "13:20"}
+  {"day": "thursday", "from": "8:45", "to": "12:25"},
+  {"day": "friday", "from": "8:45", "to": "13:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -99,11 +99,11 @@
 "name": "Anna",
 "surname": "Kajetanowicz",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "11:30"},
-  {"day": "wtorek", "from": "7:50", "to": "11:30"},
+  {"day": "monday", "from": "7:50", "to": "11:30"},
+  {"day": "tuesday", "from": "7:50", "to": "11:30"},
   {"day": "wednesday", "from": "7:50", "to": "11:30"},
-  {"day": "czwartek", "from": "7:50", "to": "11:30"},
-  {"day": "piątek", "from": "8:45", "to": "12:25"}
+  {"day": "thursday", "from": "7:50", "to": "11:30"},
+  {"day": "friday", "from": "8:45", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -112,11 +112,11 @@
 "name": "Katarzyna",
 "surname": "Kupczyk",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "12:25"},
-  {"day": "wtorek", "from": "7:50", "to": "12:25"},
+  {"day": "monday", "from": "7:50", "to": "12:25"},
+  {"day": "tuesday", "from": "7:50", "to": "12:25"},
   {"day": "wednesday", "from": "7:50", "to": "12:25"},
-  {"day": "czwartek", "from": "7:50", "to": "12:25"},
-  {"day": "piątek", "from": "7:50", "to": "11:30"}
+  {"day": "thursday", "from": "7:50", "to": "12:25"},
+  {"day": "friday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
@@ -125,11 +125,11 @@
 "name": "Zbigniew",
 "surname": "Łukaszuk",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "14:20"},
-  {"day": "wtorek", "from": "9:40", "to": "12:25"},
+  {"day": "monday", "from": "7:50", "to": "14:20"},
+  {"day": "tuesday", "from": "9:40", "to": "12:25"},
   {"day": "wednesday", "from": "8:45", "to": "13:20"},
-  {"day": "czwartek", "from": "7:50", "to": "11:30"},
-  {"day": "piątek", "from": "7:50", "to": "10:35"}
+  {"day": "thursday", "from": "7:50", "to": "11:30"},
+  {"day": "friday", "from": "7:50", "to": "10:35"}
 ],
 "duty": [],
 "isAvailable": true
@@ -138,8 +138,8 @@
 "name": "Iwona",
 "surname": "Michalik-Maj",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "11:30", "to": "12:25"},
-  {"day": "czwartek", "from": "11:30", "to": "12:25"}
+  {"day": "monday", "from": "11:30", "to": "12:25"},
+  {"day": "thursday", "from": "11:30", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -148,11 +148,11 @@
 "name": "Malwina",
 "surname": "Nogawka",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "15:10"},
-  {"day": "wtorek", "from": "7:50", "to": "15:10"},
+  {"day": "monday", "from": "7:50", "to": "15:10"},
+  {"day": "tuesday", "from": "7:50", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "13:20"},
-  {"day": "czwartek", "from": "7:50", "to": "12:25"},
-  {"day": "piątek", "from": "7:50", "to": "13:20"}
+  {"day": "thursday", "from": "7:50", "to": "12:25"},
+  {"day": "friday", "from": "7:50", "to": "13:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -161,11 +161,11 @@
 "name": "Sara",
 "surname": "Rzemińska",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "11:30"},
-  {"day": "wtorek", "from": "7:50", "to": "10:35"},
+  {"day": "monday", "from": "7:50", "to": "11:30"},
+  {"day": "tuesday", "from": "7:50", "to": "10:35"},
   {"day": "wednesday", "from": "7:50", "to": "12:25"},
-  {"day": "czwartek", "from": "7:50", "to": "15:10"},
-  {"day": "piątek", "from": "7:50", "to": "11:30"}
+  {"day": "thursday", "from": "7:50", "to": "15:10"},
+  {"day": "friday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
@@ -174,11 +174,11 @@
 "name": "Aleksandra",
 "surname": "Sala",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "14:20"},
-  {"day": "wtorek", "from": "7:50", "to": "14:20"},
+  {"day": "monday", "from": "7:50", "to": "14:20"},
+  {"day": "tuesday", "from": "7:50", "to": "14:20"},
   {"day": "wednesday", "from": "7:50", "to": "14:20"},
-  {"day": "czwartek", "from": "7:50", "to": "14:20"},
-  {"day": "piątek", "from": "7:50", "to": "13:20"}
+  {"day": "thursday", "from": "7:50", "to": "14:20"},
+  {"day": "friday", "from": "7:50", "to": "13:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -187,10 +187,10 @@
 "name": "Patrycja",
 "surname": "Skórzecka",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "14:20", "to": "15:10"},
-  {"day": "wtorek", "from": "14:20", "to": "15:10"},
+  {"day": "monday", "from": "14:20", "to": "15:10"},
+  {"day": "tuesday", "from": "14:20", "to": "15:10"},
   {"day": "wednesday", "from": "14:20", "to": "15:10"},
-  {"day": "czwartek", "from": "7:50", "to": "8:45"}
+  {"day": "thursday", "from": "7:50", "to": "8:45"}
 ],
 "duty": [],
 "isAvailable": true
@@ -199,11 +199,11 @@
 "name": "Maciej",
 "surname": "Słomski",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "14:20"},
-  {"day": "wtorek", "from": "7:50", "to": "14:20"},
+  {"day": "monday", "from": "7:50", "to": "14:20"},
+  {"day": "tuesday", "from": "7:50", "to": "14:20"},
   {"day": "wednesday", "from": "7:50", "to": "12:25"},
-  {"day": "czwartek", "from": "8:45", "to": "12:25"},
-  {"day": "piątek", "from": "7:50", "to": "11:30"}
+  {"day": "thursday", "from": "8:45", "to": "12:25"},
+  {"day": "friday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
@@ -212,8 +212,8 @@
 "name": "Barbara",
 "surname": "Szewczak-Świrska",
 "lessonsPlan": [
-  {"day": "wtorek", "from": "12:25", "to": "15:10"},
-  {"day": "czwartek", "from": "12:25", "to": "14:20"}
+  {"day": "tuesday", "from": "12:25", "to": "15:10"},
+  {"day": "thursday", "from": "12:25", "to": "14:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -222,11 +222,11 @@
 "name": "Izabela",
 "surname": "Szik",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "13:20"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "13:20"},
   {"day": "wednesday", "from": "7:50", "to": "14:20"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "10:35"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "10:35"}
 ],
 "duty": [],
 "isAvailable": true
@@ -235,11 +235,11 @@
 "name": "Sławomir",
 "surname": "Szik",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "12:25"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "12:25"},
   {"day": "wednesday", "from": "7:50", "to": "14:20"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "11:35"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "11:35"}
 ],
 "duty": [],
 "isAvailable": true
@@ -248,11 +248,11 @@
 "name": "Urszala",
 "surname": "Szkudlarek",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "13:20"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "13:20"},
   {"day": "wednesday", "from": "7:50", "to": "12:25"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "12:25"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -261,10 +261,10 @@
 "name": "Artur",
 "surname": "Trela",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "11:40", "to": "15:10"},
-  {"day": "wtorek", "from": "7:50", "to": "12:25"},
-  {"day": "czwartek", "from": "8:45", "to": "12:25"},
-  {"day": "piątek", "from": "7:50", "to": "13:20"}
+  {"day": "monday", "from": "11:40", "to": "15:10"},
+  {"day": "tuesday", "from": "7:50", "to": "12:25"},
+  {"day": "thursday", "from": "8:45", "to": "12:25"},
+  {"day": "friday", "from": "7:50", "to": "13:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -273,11 +273,11 @@
 "name": "Marian",
 "surname": "Wadowski",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "8:45", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "13:20"},
+  {"day": "monday", "from": "8:45", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "13:20"},
   {"day": "wednesday", "from": "8:45", "to": "10:35"},
-  {"day": "czwartek", "from": "7:50", "to": "11:30"},
-  {"day": "piątek", "from": "7:50", "to": "14:20"}
+  {"day": "thursday", "from": "7:50", "to": "11:30"},
+  {"day": "friday", "from": "7:50", "to": "14:20"}
 ],
 "duty": [],
 "isAvailable": true
@@ -286,11 +286,11 @@
 "name": "Marcel",
 "surname": "Witkowski",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "8:45"},
-  {"day": "wtorek", "from": "8:45", "to": "11:30"},
+  {"day": "monday", "from": "7:50", "to": "8:45"},
+  {"day": "tuesday", "from": "8:45", "to": "11:30"},
   {"day": "wednesday", "from": "7:50", "to": "13:20"},
-  {"day": "czwartek", "from": "8:45", "to": "12:25"},
-  {"day": "piątek", "from": "8:45", "to": "12:25"}
+  {"day": "thursday", "from": "8:45", "to": "12:25"},
+  {"day": "friday", "from": "8:45", "to": "12:25"}
 ],
 "duty": [],
 "isAvailable": true
@@ -299,11 +299,11 @@
 "name": "Aleksandra",
 "surname": "Woźniak",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "14:20"},
-  {"day": "wtorek", "from": "8:45", "to": "16:00"},
+  {"day": "monday", "from": "7:50", "to": "14:20"},
+  {"day": "tuesday", "from": "8:45", "to": "16:00"},
   {"day": "wednesday", "from": "7:50", "to": "13:20"},
-  {"day": "czwartek", "from": "7:50", "to": "14:20"},
-  {"day": "piątek", "from": "7:50", "to": "10:35"}
+  {"day": "thursday", "from": "7:50", "to": "14:20"},
+  {"day": "friday", "from": "7:50", "to": "10:35"}
 ],
 "duty": [],
 "isAvailable": true
@@ -312,11 +312,11 @@
 "name": "Kazimierz",
 "surname": "Wrona",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "16:00"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "16:00"},
   {"day": "wednesday", "from": "7:50", "to": "14:20"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "16:00"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "16:00"}
 ],
 "duty": [],
 "isAvailable": true
@@ -325,11 +325,11 @@
 "name": "Krzysztofa",
 "surname": "Wrotna",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "7:50", "to": "13:20"},
-  {"day": "wtorek", "from": "7:50", "to": "15:10"},
+  {"day": "monday", "from": "7:50", "to": "13:20"},
+  {"day": "tuesday", "from": "7:50", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "16:00"},
-  {"day": "czwartek", "from": "7:50", "to": "13:20"},
-  {"day": "piątek", "from": "7:50", "to": "16:00"}
+  {"day": "thursday", "from": "7:50", "to": "13:20"},
+  {"day": "friday", "from": "7:50", "to": "16:00"}
 ],
 "duty": [],
 "isAvailable": true
@@ -338,9 +338,9 @@
 "name": "Roksana",
 "surname": "Wysocka",
 "lessonsPlan": [
-  {"day": "poniedziałek", "from": "10:35", "to": "15:10"},
+  {"day": "monday", "from": "10:35", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "11:30"},
-  {"day": "piątek", "from": "7:50", "to": "11:30"}
+  {"day": "friday", "from": "7:50", "to": "11:30"}
 ],
 "duty": [],
 "isAvailable": true
