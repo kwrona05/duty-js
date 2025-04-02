@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./absentTeachers.scss";
 
 function AbsentTeachers({ teachers, setTeachers }) {
-  const [isFormOpen, setIsFormOpen] = useState(false); // Kontrola rozwinięcia formularza
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [absentTeachers, setAbsentTeachers] = useState([]);
 
   const toggleForm = () => {
@@ -25,7 +25,6 @@ function AbsentTeachers({ teachers, setTeachers }) {
         {isFormOpen ? "Hide Form" : "Mark Absent Teachers"}
       </button>
 
-      {/* Jeśli formularz jest rozwinięty, wyświetl go */}
       {isFormOpen && (
         <div className="form-container">
           <h3>Zaznacz nieobecnych nauczycieli</h3>
