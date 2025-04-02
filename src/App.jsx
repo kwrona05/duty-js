@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import dutyData from "./data/duty.json";
 import teacherData from "./data/teachers.json";
 import "./App.scss";
+import AbsentTeachers from "./components/absentTeachers";
 
 function DutyScheduler() {
   const [duties, setDuties] = useState(dutyData);
@@ -33,7 +34,7 @@ function DutyScheduler() {
         (d) => d.day === duty.day && d.hour === duty.hour
       );
 
-      return !hasLesson && !hasDuty;
+      return !hasLesson && !hasDuty && teacher.isAvailable;
     });
 
     setAvailableTeachers(available);
@@ -56,7 +57,6 @@ function DutyScheduler() {
                 hour: updatedDuties[selectedDuty].hour,
               },
             ],
-            isAvailable: false,
           };
         }
         return teacher;
@@ -84,6 +84,7 @@ function DutyScheduler() {
   return (
     <div className="duty-scheduler">
       <h2>Przypisywanie dyżurów</h2>
+      <AbsentTeachers teachers={teachers} setTeachers={setTeachers} />
       <table>
         <thead>
           <tr>
@@ -103,35 +104,33 @@ function DutyScheduler() {
               <td>{duty.place}</td>
               <td>{duty.teacher || "Brak"}</td>
               <td>
-                {selectedDuty !== null && (
-                  <div className="assign-teacher">
-                    <select
-                      value={selectedTeacher}
-                      onChange={(e) => setSelectedTeacher(e.target.value)}
-                    >
-                      <option value="">Wybierz nauczyciela</option>
-                      {availableTeachers.length === 0 ? (
-                        <option value="">Brak dostępnych nauczycieli</option>
-                      ) : (
-                        availableTeachers.map((teacher) => (
-                          <option
-                            key={teacher.id}
-                            value={`${teacher.name} ${teacher.surname}`}
-                          >
-                            {teacher.name} {teacher.surname}
-                          </option>
-                        ))
-                      )}
-                    </select>
-                    <button
-                      className="button secondary"
-                      onClick={handleAssignTeacher}
-                      disabled={!selectedTeacher}
-                    >
-                      Przypisz
-                    </button>
-                  </div>
-                )}
+                <div className="assign-teacher">
+                  <select
+                    value={selectedTeacher}
+                    onChange={(e) => setSelectedTeacher(e.target.value)}
+                  >
+                    <option value="">Wybierz nauczyciela</option>
+                    {availableTeachers.length === 0 ? (
+                      <option value="">Brak dostępnych nauczycieli</option>
+                    ) : (
+                      availableTeachers.map((teacher) => (
+                        <option
+                          key={teacher.id}
+                          value={`${teacher.name} ${teacher.surname}`}
+                        >
+                          {teacher.name} {teacher.surname}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                  <button
+                    className="button secondary"
+                    onClick={handleAssignTeacher}
+                    disabled={!selectedTeacher}
+                  >
+                    Przypisz
+                  </button>
+                </div>
               </td>
               <td>
                 <button
