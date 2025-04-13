@@ -1,7 +1,6 @@
 [
   {"id": 1,
-"name": "Katarzyna",
-"surname": "Krasowska",
+"name": "Krasowska",
 "lessonsPlan": [
   {"day": "tuesday", "from": "11:40", "to": "13:20"},
   {"day": "środa", "from": "10:45", "to": "15:10"},
@@ -12,8 +11,7 @@
 "isAvailable": true
 },
 {"id": 2, 
-"name": "Bohdana", 
-"surname": "Boruk", 
+"name": "Boruk", 
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "12:25", "to": "16:00"},
@@ -23,8 +21,7 @@
 "isAvailable": true
 },
 {"id": 3,
-"name": "Łukasz",
-"surname": "Dębowski",
+"name": "Dębowski",
 "lessonsPlan": [
   {"day": "tuesday", "from": "12:25", "to": "16:00"},
   {"day": "wednesday", "from": "12:25", "to": "16:00"}
@@ -33,8 +30,7 @@
 "isAvailable": true
 },
 {"id": 4,
-"name": "Renata",
-"surname": "Długosz",
+"name": "Długosz",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -46,8 +42,7 @@
 "isAvailable": true
 },
 {"id": 5,
-"name": "Agnieszka",
-"surname": "Dyła",
+"name": "Dyła",
 "lessonsPlan": [
   {"day": "monday", "from": "8:45", "to": "12:25"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -59,8 +54,7 @@
 "isAvailable": true
 },
 {"id": 6,
-"name": "Anna",
-"surname": "Dymek",
+"name": "Dymek",
 "lessonsPlan": [
   {"day": "monday", "from": "9:40", "to": "11:30"},
   {"day": "tuesday", "from": "10:35", "to": "12:25"},
@@ -70,8 +64,7 @@
 "isAvailable": true
 },
 {"id": 7,
-"name": "Magdalena",
-"surname": "Foryt",
+"name": "Foryt",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -83,8 +76,7 @@
 "isAvailable": true
 },
 {"id": 8,
-"name": "Małgorzata",
-"surname": "Jop",
+"name": "Jop",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "11:30"},
@@ -96,8 +88,7 @@
 "isAvailable": true
 },
 {"id": 9,
-"name": "Anna",
-"surname": "Kajetanowicz",
+"name": "Kajetanowicz",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "11:30"},
@@ -109,8 +100,7 @@
 "isAvailable": true
 },
 {"id": 10,
-"name": "Katarzyna",
-"surname": "Kupczyk",
+"name": "Kupczyk",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "12:25"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -122,8 +112,7 @@
 "isAvailable": true
 },
 {"id": 11,
-"name": "Zbigniew",
-"surname": "Łukaszuk",
+"name": "Łukaszuk",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "9:40", "to": "12:25"},
@@ -135,8 +124,7 @@
 "isAvailable": true
 },
 {"id": 12,
-"name": "Iwona",
-"surname": "Michalik-Maj",
+"name": "Michalik-Maj",
 "lessonsPlan": [
   {"day": "monday", "from": "11:30", "to": "12:25"},
   {"day": "thursday", "from": "11:30", "to": "12:25"}
@@ -145,8 +133,7 @@
 "isAvailable": true
 },
 {"id": 13,
-"name": "Malwina",
-"surname": "Nogawka",
+"name": "Nogawka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "15:10"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -158,8 +145,7 @@
 "isAvailable": true
 },
 {"id": 14,
-"name": "Sara",
-"surname": "Rzemińska",
+"name": "Rzemińska",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "10:35"},
@@ -171,8 +157,7 @@
 "isAvailable": true
 },
 {"id": 15,
-"name": "Aleksandra",
-"surname": "Sala",
+"name": "Sala",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "7:50", "to": "14:20"},
@@ -184,8 +169,7 @@
 "isAvailable": true
 },
 {"id": 16,
-"name": "Patrycja",
-"surname": "Skórzecka",
+"name": "Skórzecka",
 "lessonsPlan": [
   {"day": "monday", "from": "14:20", "to": "15:10"},
   {"day": "tuesday", "from": "14:20", "to": "15:10"},
@@ -196,8 +180,7 @@
 "isAvailable": true
 },
 {"id": 17,
-"name": "Maciej",
-"surname": "Słomski",
+"name": "Słomski",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "7:50", "to": "14:20"},
@@ -209,8 +192,7 @@
 "isAvailable": true
 },
 {"id": 18,
-"name": "Barbara",
-"surname": "Szewczak-Świrska",
+"name": "Szewczak-Świrska",
 "lessonsPlan": [
   {"day": "tuesday", "from": "12:25", "to": "15:10"},
   {"day": "thursday", "from": "12:25", "to": "14:20"}
@@ -219,8 +201,7 @@
 "isAvailable": true
 },
 {"id": 19,
-"name": "Izabela",
-"surname": "Szik",
+"name": "Szik I.",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -244,8 +225,7 @@
 "isAvailable": true
 },
 {"id": 21,
-"name": "Urszala",
-"surname": "Szkudlarek",
+"name": "Szkudlarek",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -257,8 +237,7 @@
 "isAvailable": true
 },
 {"id": 22,
-"name": "Artur",
-"surname": "Trela",
+"name": "Trela",
 "lessonsPlan": [
   {"day": "monday", "from": "11:40", "to": "15:10"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -269,8 +248,7 @@
 "isAvailable": true
 },
 {"id": 23,
-"name": "Marian",
-"surname": "Wadowski",
+"name": "Wadowski",
 "lessonsPlan": [
   {"day": "monday", "from": "8:45", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -282,8 +260,7 @@
 "isAvailable": true
 },
 {"id": 24,
-"name": "Marcel",
-"surname": "Witkowski",
+"name": "Witkowski",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "8:45"},
   {"day": "tuesday", "from": "8:45", "to": "11:30"},
@@ -295,8 +272,7 @@
 "isAvailable": true
 },
 {"id": 25,
-"name": "Aleksandra",
-"surname": "Woźniak",
+"name": "Woźniak",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "8:45", "to": "16:00"},
@@ -308,8 +284,7 @@
 "isAvailable": true
 },
 {"id": 26,
-"name": "Kazimierz",
-"surname": "Wrona",
+"name": "Wrona",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "16:00"},
@@ -321,8 +296,7 @@
 "isAvailable": true
 },
 {"id": 27,
-"name": "Krzysztofa",
-"surname": "Wrotna",
+"name": "Wrotna",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -334,8 +308,7 @@
 "isAvailable": true
 },
 {"id": 28,
-"name": "Roksana",
-"surname": "Wysocka",
+"name": "Wysocka",
 "lessonsPlan": [
   {"day": "monday", "from": "10:35", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "11:30"},

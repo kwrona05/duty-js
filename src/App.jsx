@@ -17,6 +17,10 @@ function DutyScheduler() {
     }
   }, [selectedDuty]);
 
+  useEffect(() => {
+    console.log("Duties updated: ", duties);
+  }, [duties]);
+
   const handleSelectDuty = (index) => {
     setSelectedDuty(index);
     setSelectedTeacher("");
@@ -24,7 +28,7 @@ function DutyScheduler() {
 
   const filterAvailableTeachers = (duty) => {
     const available = teachers.filter((teacher) => {
-      const fullName = `${teacher.name} ${teacher.surname}`;
+      const fullName = `${teacher.name}`;
 
       const hasLesson = teacher.lessonsPlan.some(
         (lesson) =>
@@ -36,8 +40,11 @@ function DutyScheduler() {
         (d) => d.day === duty.day && d.hour === duty.hour
       );
 
+      const isMarkedName = (name) => name.replaceAll("~~", "");
+
       const isAlreadyAssigned =
-        Array.isArray(duty.teacher) && duty.teacher.includes(fullName);
+        Array.isArray(duty.teacher) &&
+        duty.teacher.some((tName) => isMarkedName(tName) === fullName);
 
       return (
         !hasLesson && !hasDuty && teacher.isAvailable && !isAlreadyAssigned
@@ -64,7 +71,7 @@ function DutyScheduler() {
       setDuties(updatedDuties);
 
       const updatedTeachers = teachers.map((teacher) => {
-        const fullName = `${teacher.name} ${teacher.surname}`;
+        const fullName = `${teacher.name}`;
         if (fullName === selectedTeacher) {
           return {
             ...teacher,
@@ -125,7 +132,22 @@ function DutyScheduler() {
               <td>{duty.day}</td>
               <td>{duty.hour}</td>
               <td>{duty.place}</td>
-              <td>{duty.teacher}</td>
+              <td>
+                {Array.isArray(duty.teacher)
+                  ? duty.teacher.map((t, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          textDecoration: t.startsWith("~~")
+                            ? "line-through"
+                            : "none",
+                        }}
+                      >
+                        {t.replaceAll("~~", "")}
+                      </div>
+                    ))
+                  : duty.teacher}
+              </td>
               <td>
                 <div className="assign-teacher">
                   <select
@@ -137,11 +159,8 @@ function DutyScheduler() {
                       <option value="">Brak dostępnych nauczycieli</option>
                     ) : (
                       availableTeachers.map((teacher) => (
-                        <option
-                          key={teacher.id}
-                          value={`${teacher.name} ${teacher.surname}`}
-                        >
-                          {teacher.name} {teacher.surname}
+                        <option key={teacher.id} value={`${teacher.name}`}>
+                          {teacher.name}
                         </option>
                       ))
                     )}
