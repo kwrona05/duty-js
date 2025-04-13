@@ -1,15 +1,4 @@
 [
-  {"id": 1,
-"name": "Krasowska",
-"lessonsPlan": [
-  {"day": "tuesday", "from": "11:40", "to": "13:20"},
-  {"day": "środa", "from": "10:45", "to": "15:10"},
-  {"day": "thursday", "from": "8:55", "to": "14:20"},
-  {"day": "friday", "from": "8:55", "to": "12:25"}
-],
-"duty": [],
-"isAvailable": true
-},
 {"id": 2, 
 "name": "Boruk", 
 "lessonsPlan": [
@@ -30,7 +19,7 @@
 "isAvailable": true
 },
 {"id": 4,
-"name": "Długosz",
+"name": "Długosz-Pasieka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},

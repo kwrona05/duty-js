@@ -21,6 +21,11 @@ function DutyScheduler() {
     console.log("Duties updated: ", duties);
   }, [duties]);
 
+  useEffect(() => {
+    const updatedTeachers = assignDutiesToTeachers(teacherData, dutyData);
+    setTeachers(updatedTeachers);
+  }, []);
+
   const handleSelectDuty = (index) => {
     setSelectedDuty(index);
     setSelectedTeacher("");
@@ -53,6 +58,29 @@ function DutyScheduler() {
 
     setAvailableTeachers(available);
   };
+
+  function assignDutiesToTeachers(teachers, duties) {
+    // Tworzymy nową listę nauczycieli z uzupełnionym polem duty
+    return teachers.map((teacher) => {
+      // Filtrujemy wszystkie dyżury, które pasują do nauczyciela po nazwisku
+      const matchedDuties = duties
+        .filter(
+          (duty) =>
+            Array.isArray(duty.teacher) && duty.teacher.includes(teacher.name)
+        )
+        .map((duty) => ({
+          day: duty.day,
+          hour: duty.hour,
+          place: duty.place,
+        }));
+
+      // Zwracamy nowego nauczyciela z przypisanym polem duty
+      return {
+        ...teacher,
+        duty: matchedDuties,
+      };
+    });
+  }
 
   const handleAssignTeacher = () => {
     if (selectedDuty !== null && selectedTeacher) {
