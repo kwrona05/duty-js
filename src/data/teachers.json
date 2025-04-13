@@ -232,8 +232,7 @@
 "isAvailable": true
 },
 {"id": 20,
-"name": "Sławomir",
-"surname": "Szik",
+"name": "Szik S.",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},

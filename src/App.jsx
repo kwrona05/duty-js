@@ -24,6 +24,8 @@ function DutyScheduler() {
 
   const filterAvailableTeachers = (duty) => {
     const available = teachers.filter((teacher) => {
+      const fullName = `${teacher.name} ${teacher.surname}`;
+
       const hasLesson = teacher.lessonsPlan.some(
         (lesson) =>
           lesson.day === duty.day &&
@@ -34,7 +36,12 @@ function DutyScheduler() {
         (d) => d.day === duty.day && d.hour === duty.hour
       );
 
-      return !hasLesson && !hasDuty && teacher.isAvailable;
+      const isAlreadyAssigned =
+        Array.isArray(duty.teacher) && duty.teacher.includes(fullName);
+
+      return (
+        !hasLesson && !hasDuty && teacher.isAvailable && !isAlreadyAssigned
+      );
     });
 
     setAvailableTeachers(available);
@@ -43,11 +50,22 @@ function DutyScheduler() {
   const handleAssignTeacher = () => {
     if (selectedDuty !== null && selectedTeacher) {
       const updatedDuties = [...duties];
-      updatedDuties[selectedDuty].teacher = selectedTeacher;
+
+      if (Array.isArray(updatedDuties[selectedDuty].teacher)) {
+        if (!updatedDuties[selectedDuty].teacher.includes(selectedTeacher)) {
+          updatedDuties[selectedDuty].teacher.push(selectedTeacher);
+        }
+      } else if (updatedDuties[selectedDuty].teacher === null) {
+        updatedDuties[selectedDuty].teacher = [selectedTeacher];
+      } else {
+        updatedDuties[selectedDuty].teacher = [selectedTeacher];
+      }
+
       setDuties(updatedDuties);
 
       const updatedTeachers = teachers.map((teacher) => {
-        if (`${teacher.name} ${teacher.surname}` === selectedTeacher) {
+        const fullName = `${teacher.name} ${teacher.surname}`;
+        if (fullName === selectedTeacher) {
           return {
             ...teacher,
             duty: [
@@ -84,14 +102,19 @@ function DutyScheduler() {
   return (
     <div className="duty-scheduler">
       <h2>Przypisywanie dyżurów</h2>
-      <AbsentTeachers teachers={teachers} setTeachers={setTeachers} />
+      <AbsentTeachers
+        teachers={teachers}
+        setTeachers={setTeachers}
+        duties={duties}
+        setDuties={setDuties}
+      />
       <table>
         <thead>
           <tr>
             <th>Dzień</th>
             <th>Godzina</th>
             <th>Miejsce</th>
-            <th>Nauczyciel</th>
+            <th>Nauczyciel(e)</th>
             <th>Dyżur</th>
             <th>Zaznacz dyżur</th>
           </tr>
@@ -102,7 +125,7 @@ function DutyScheduler() {
               <td>{duty.day}</td>
               <td>{duty.hour}</td>
               <td>{duty.place}</td>
-              <td>{duty.teacher || "Brak"}</td>
+              <td>{duty.teacher}</td>
               <td>
                 <div className="assign-teacher">
                   <select
