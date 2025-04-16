@@ -41,16 +41,24 @@ function DutyScheduler() {
           isOverlapping(lesson.from, lesson.to, duty.hour)
       );
 
-      const hasDuty = teacher.duty.some(
-        (d) => d.day === duty.day && d.hour === duty.hour
-      );
+      const isSpecialDuty =
+        (duty.day === "środa" &&
+          duty.hour === "14:20" &&
+          duty.place === "Dziedziniec") ||
+        duty.place === "Budynek A" ||
+        (duty.day === "czwartek" &&
+          duty.hour === "14:20" &&
+          (duty.place === "Dziedziniec" || duty.place === "Budynek A"));
+
+      const hasDuty =
+        !isSpecialDuty &&
+        teacher.duty.some((d) => d.day === duty.day && d.hour === duty.hour);
 
       const isMarkedName = (name) => name.replaceAll("~~", "");
 
       const isAlreadyAssigned =
         Array.isArray(duty.teacher) &&
         duty.teacher.some((tName) => isMarkedName(tName) === fullName);
-
       return (
         !hasLesson && !hasDuty && teacher.isAvailable && !isAlreadyAssigned
       );
