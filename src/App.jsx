@@ -48,7 +48,14 @@ function DutyScheduler() {
         duty.place === "Budynek A" ||
         (duty.day === "czwartek" &&
           duty.hour === "14:20" &&
-          (duty.place === "Dziedziniec" || duty.place === "Budynek A"));
+          (duty.place === "Dziedziniec" || duty.place === "Budynek A")) ||
+        (duty.day === "Piątek" &&
+          duty.hour === "13:20" &&
+          (duty.place === "Budynek B parter + WC" ||
+            duty.place === "Budynek B 1piętro")) ||
+        (duty.day === "Poniedziałek" &&
+          duty.hour === "14:20" &&
+          (duty.place === "Budynek A" || duty.place === "Budynek A 1piętro"));
 
       const hasDuty =
         !isSpecialDuty &&
