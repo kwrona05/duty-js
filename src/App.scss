@@ -39,8 +39,8 @@
       border-bottom: none;
     }
 
-    .duty-row:nth-child(even) {
-      background-color: #f9f9f9;
+    .selected-row {
+      background-color: #e0f3ff !important;
     }
 
     .assign-teacher {

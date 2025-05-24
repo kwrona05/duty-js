@@ -75,9 +75,7 @@ function DutyScheduler() {
   };
 
   function assignDutiesToTeachers(teachers, duties) {
-    // Tworzymy nową listę nauczycieli z uzupełnionym polem duty
     return teachers.map((teacher) => {
-      // Filtrujemy wszystkie dyżury, które pasują do nauczyciela po nazwisku
       const matchedDuties = duties
         .filter(
           (duty) =>
@@ -89,7 +87,6 @@ function DutyScheduler() {
           place: duty.place,
         }));
 
-      // Zwracamy nowego nauczyciela z przypisanym polem duty
       return {
         ...teacher,
         duty: matchedDuties,
@@ -97,39 +94,112 @@ function DutyScheduler() {
     });
   }
 
+  const pairedDuties = (selectedIndex, allDuties) => {
+    const current = allDuties[selectedIndex];
+
+    const pairs = [
+      {
+        day: "wtorek",
+        hour: "16:00",
+        places: ["Dziedziniec", "Budynek A"],
+      },
+      {
+        day: "wtorek",
+        hour: "14:20",
+        places: ["Budynek B parter + WC", "Budynek B 1piętro"],
+      },
+      {
+        day: "wtorek",
+        hour: "15:10",
+        places: ["Budynek B parter + WC", "Budynek B 1piętro"],
+      },
+      {
+        day: "środa",
+        hour: "14:20",
+        places: ["Dziedziniec", "Budynek A"],
+      },
+      {
+        day: "środa",
+        hour: "16:00",
+        places: ["Dziedziniec", "Budynek A"],
+      },
+      {
+        day: "czwartek",
+        hour: "14:20",
+        places: ["Dziedziniec", "Budynek A"],
+      },
+      {
+        day: "czwartek",
+        hour: "13:20",
+        places: ["Budynek B parter + WC", "Budynek B 1piętro"],
+      },
+      {
+        day: "piątek",
+        hour: "13:20",
+        places: ["Budynek B parter + WC", "Budynek B 1piętro"],
+      },
+    ];
+
+    const pair = pairs.find(
+      (p) =>
+        p.day === current.day &&
+        p.hour === current.hour &&
+        p.places.includes(current.place)
+    );
+
+    if (!pair) return null;
+
+    return allDuties.findIndex(
+      (duty, i) =>
+        i !== selectedIndex &&
+        duty.day === current.day &&
+        duty.hour === current.hour &&
+        pair.places.includes(duty.place)
+    );
+  };
+
   const handleAssignTeacher = () => {
     if (selectedDuty !== null && selectedTeacher) {
-      const updatedDuties = [...duties];
+      const updateDuties = [...duties];
 
-      if (Array.isArray(updatedDuties[selectedDuty].teacher)) {
-        if (!updatedDuties[selectedDuty].teacher.includes(selectedTeacher)) {
-          updatedDuties[selectedDuty].teacher.push(selectedTeacher);
-        }
-      } else if (updatedDuties[selectedDuty].teacher === null) {
-        updatedDuties[selectedDuty].teacher = [selectedTeacher];
-      } else {
-        updatedDuties[selectedDuty].teacher = [selectedTeacher];
+      const currentDuty = updateDuties[selectedDuty];
+      const pairIndex = pairedDuties(selectedDuty, updateDuties);
+      const pairDuty = pairIndex !== -1 ? updateDuties[pairIndex] : null;
+
+      const dutiesToUpdate = [currentDuty];
+      if (pairDuty) {
+        dutiesToUpdate.push(pairDuty);
       }
 
-      setDuties(updatedDuties);
-
       const updatedTeachers = teachers.map((teacher) => {
-        const fullName = `${teacher.name}`;
-        if (fullName === selectedTeacher) {
+        if (teacher.name === selectedTeacher) {
+          const newDuties = dutiesToUpdate.map((duty) => ({
+            day: duty.day,
+            hour: duty.hour,
+            place: duty.place,
+          }));
+
           return {
             ...teacher,
-            duty: [
-              ...teacher.duty,
-              {
-                day: updatedDuties[selectedDuty].day,
-                hour: updatedDuties[selectedDuty].hour,
-              },
-            ],
+            duty: [...teacher.duty, ...newDuties],
           };
         }
         return teacher;
       });
 
+      dutiesToUpdate.forEach((duty) => {
+        if (Array.isArray(duty.teacher)) {
+          if (!duty.teacher.includes(selectedTeacher)) {
+            duty.teacher.push(selectedTeacher);
+          }
+        } else if (duty.teacher === null) {
+          duty.teacher = [selectedTeacher];
+        } else {
+          duty.teacher = [selectedTeacher];
+        }
+      });
+
+      setDuties(updateDuties);
       setTeachers(updatedTeachers);
       setSelectedTeacher("");
       setSelectedDuty(null);
@@ -171,7 +241,12 @@ function DutyScheduler() {
         </thead>
         <tbody>
           {duties.map((duty, index) => (
-            <tr key={index} className="duty-row">
+            <tr
+              key={index}
+              className={`duty-row ${
+                selectedDuty === index ? "selected-row" : ""
+              }`}
+            >
               <td>{duty.day}</td>
               <td>{duty.hour}</td>
               <td>{duty.place}</td>
@@ -184,6 +259,7 @@ function DutyScheduler() {
                           textDecoration: t.startsWith("~~")
                             ? "line-through"
                             : "none",
+                          color: t.startsWith("~~") ? "red" : "inherit",
                         }}
                       >
                         {t.replaceAll("~~", "")}
