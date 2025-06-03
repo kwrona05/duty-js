@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import dutyData from "../data/duty.json";
 import teacherData from "../data/teachers.json";
 import "../App.scss";
 import AbsentTeachers from "./absentTeachers";
+import html2canvas from "html2canvas";
+// import DutySummary from "./Summary";
 
 function DutyScheduler() {
   const [duties, setDuties] = useState(dutyData);
@@ -10,6 +12,8 @@ function DutyScheduler() {
   const [selectedDuty, setSelectedDuty] = useState(null);
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [availableTeachers, setAvailableTeachers] = useState([]);
+  const [selectedDay, setSelectedDay] = useState("Poniedziałek");
+  const tableRef = useRef(null);
 
   useEffect(() => {
     if (selectedDuty !== null) {
@@ -158,6 +162,17 @@ function DutyScheduler() {
     );
   };
 
+  const handleExportToPNG = () => {
+    if (tableRef.current) {
+      html2canvas(tableRef.current).then((canvas) => {
+        const link = document.createElement("a");
+        link.download = "dyzury.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  };
+
   const handleAssignTeacher = () => {
     if (selectedDuty !== null && selectedTeacher) {
       const updateDuties = [...duties];
@@ -188,14 +203,16 @@ function DutyScheduler() {
       });
 
       dutiesToUpdate.forEach((duty) => {
+        const manualName = `[manual] ${selectedTeacher}`;
+
         if (Array.isArray(duty.teacher)) {
-          if (!duty.teacher.includes(selectedTeacher)) {
-            duty.teacher.push(selectedTeacher);
+          if (!duty.teacher.includes(manualName)) {
+            duty.teacher.push(manualName);
           }
         } else if (duty.teacher === null) {
-          duty.teacher = [selectedTeacher];
+          duty.teacher = [manualName];
         } else {
-          duty.teacher = [selectedTeacher];
+          duty.teacher = [manualName];
         }
       });
 
@@ -228,7 +245,23 @@ function DutyScheduler() {
         duties={duties}
         setDuties={setDuties}
       />
-      <table>
+      <button className="button export" onClick={handleExportToPNG}>
+        Zapisz tabelę jako PNG
+      </button>
+      <div className="day-filter">
+        <label>Wybierz dzień:</label>
+        <select
+          value={selectedDay}
+          onChange={(e) => setSelectedDay(e.target.value)}
+        >
+          <option value="Poniedziałek">Poniedziałek</option>
+          <option value="Wtorek">Wtorek</option>
+          <option value="Środa">Środa</option>
+          <option value="Czwartek">Czwartek</option>
+          <option value="Piątek">Piątek</option>
+        </select>
+      </div>
+      <table ref={tableRef}>
         <thead>
           <tr>
             <th>Dzień</th>
@@ -240,69 +273,88 @@ function DutyScheduler() {
           </tr>
         </thead>
         <tbody>
-          {duties.map((duty, index) => (
-            <tr
-              key={index}
-              className={`duty-row ${
-                selectedDuty === index ? "selected-row" : ""
-              }`}
-            >
-              <td>{duty.day}</td>
-              <td>{duty.hour}</td>
-              <td>{duty.place}</td>
-              <td>
-                {Array.isArray(duty.teacher)
-                  ? duty.teacher.map((t, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          textDecoration: t.startsWith("~~")
-                            ? "line-through"
-                            : "none",
-                          color: t.startsWith("~~") ? "red" : "inherit",
-                        }}
-                      >
-                        {t.replaceAll("~~", "")}
-                      </div>
-                    ))
-                  : duty.teacher}
-              </td>
-              <td>
-                <div className="assign-teacher">
-                  <select
-                    value={selectedTeacher}
-                    onChange={(e) => setSelectedTeacher(e.target.value)}
-                  >
-                    <option value="">Wybierz nauczyciela</option>
-                    {availableTeachers.length === 0 ? (
-                      <option value="">Brak dostępnych nauczycieli</option>
-                    ) : (
-                      availableTeachers.map((teacher) => (
-                        <option key={teacher.id} value={`${teacher.name}`}>
-                          {teacher.name}
-                        </option>
-                      ))
-                    )}
-                  </select>
+          {duties
+            .map((duty, index) => ({ duty, index }))
+            .filter(
+              ({ duty }) => duty.day.toLowerCase() === selectedDay.toLowerCase()
+            )
+            .map(({ duty, index }) => (
+              <tr
+                key={index}
+                className={`duty-row ${
+                  selectedDuty === index ? "selected-row" : ""
+                }`}
+              >
+                <td>{duty.day}</td>
+                <td>{duty.hour}</td>
+                <td>{duty.place}</td>
+                <td>
+                  {Array.isArray(duty.teacher)
+                    ? duty.teacher.map((t, i) => {
+                        const isAbsent = t.startsWith("~~");
+                        const isManual = t.startsWith("[manual]");
+                        const cleanName = t
+                          .replaceAll("~~", "")
+                          .replace("[manual] ", "");
+
+                        return (
+                          <div
+                            key={i}
+                            className={
+                              isAbsent
+                                ? "absent-teacher"
+                                : isManual
+                                ? "manual-teacher"
+                                : ""
+                            }
+                            style={{
+                              textDecoration: isAbsent
+                                ? "line-through"
+                                : "none",
+                            }}
+                          >
+                            {cleanName}
+                          </div>
+                        );
+                      })
+                    : duty.teacher}
+                </td>
+                <td>
+                  <div className="assign-teacher">
+                    <select
+                      value={selectedTeacher}
+                      onChange={(e) => setSelectedTeacher(e.target.value)}
+                    >
+                      <option value="">Wybierz nauczyciela</option>
+                      {availableTeachers.length === 0 ? (
+                        <option value="">Brak dostępnych nauczycieli</option>
+                      ) : (
+                        availableTeachers.map((teacher) => (
+                          <option key={teacher.id} value={`${teacher.name}`}>
+                            {teacher.name}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                    <button
+                      className="button secondary"
+                      onClick={handleAssignTeacher}
+                      disabled={!selectedTeacher}
+                    >
+                      Przypisz
+                    </button>
+                  </div>
+                </td>
+                <td>
                   <button
-                    className="button secondary"
-                    onClick={handleAssignTeacher}
-                    disabled={!selectedTeacher}
+                    className="button primary"
+                    onClick={() => handleSelectDuty(index)}
                   >
-                    Przypisz
+                    Wybierz
                   </button>
-                </div>
-              </td>
-              <td>
-                <button
-                  className="button primary"
-                  onClick={() => handleSelectDuty(index)}
-                >
-                  Wybierz
-                </button>
-              </td>
-            </tr>
-          ))}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

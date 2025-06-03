@@ -1,0 +1,15 @@
+.duty-summary {
+  margin-top: 2rem;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  }
+}
