@@ -365,7 +365,7 @@ function DutyScheduler() {
             .filter(
               ({ duty }) => duty.day.toLowerCase() === selectedDay.toLowerCase()
             )
-            .map(({ duty, index }) => (
+            .map(({ duty, index }, position) => (
               <tr
                 key={index}
                 className={`duty-row ${
@@ -373,7 +373,9 @@ function DutyScheduler() {
                 }`}
               >
                 <td>{duty.day}</td>
-                <td>{duty.hour}</td>
+                <td>
+                  {duty.hour} <strong>po {position}</strong>
+                </td>
                 <td>{duty.place}</td>
                 <td>
                   {Array.isArray(duty.teacher)
