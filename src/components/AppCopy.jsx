@@ -13,6 +13,7 @@ function DutyScheduler() {
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [selectedDay, setSelectedDay] = useState("Poniedziałek");
   const [selectedRows, setSelectedRows] = useState([]);
+  const [includeExactEnd, setIncludeExactEnd] = useState(false);
   const tableRef = useRef(null);
 
   const normalizeTime = (t) => {
@@ -43,6 +44,10 @@ function DutyScheduler() {
     setTeachers(updatedTeachers);
   }, []);
 
+  useEffect(() => {
+    setSelectedTeacher("");
+  }, [includeExactEnd]);
+
   const handleSelectDuty = (index) => {
     setSelectedDuty(index);
     setSelectedTeacher("");
@@ -63,7 +68,12 @@ function DutyScheduler() {
 
       return (
         normalizedLessonDay === dutyDayEnglish &&
-        isWithinRange(lesson.from, lesson.to, duty.hour)
+        isWithinRangeExtended(
+          lesson.from,
+          lesson.to,
+          duty.hour,
+          includeExactEnd
+        )
       );
     });
 
@@ -291,6 +301,24 @@ function DutyScheduler() {
     }
   };
 
+  const isWithinRangeExtended = (from, to, hour, includeExact) => {
+    const parseTime = (t) => t.split(":").map(Number);
+    const [fromH, fromM] = parseTime(from);
+    const [toH, toM] = parseTime(to);
+    const [hourH, hourM] = parseTime(hour);
+
+    const fromMinutes = fromH * 60 + fromM;
+    const toMinutes = toH * 60 + toM;
+    const hourMinutes = hourH * 60 + hourM;
+
+    if (includeExact) {
+      // jeśli includeExact jest true, to dopuszczamy hourMinutes == toMinutes
+      return hourMinutes >= fromMinutes && hourMinutes <= toMinutes;
+    }
+
+    return hourMinutes >= fromMinutes && hourMinutes < toMinutes;
+  };
+
   return (
     <div className="duty-scheduler">
       <h2>Przypisywanie dyżurów</h2>
@@ -423,6 +451,24 @@ function DutyScheduler() {
                       disabled={!selectedTeacher}
                     >
                       Przypisz
+                    </button>
+                    <button
+                      title="Pokaż nauczycieli, którzy kończą dokładnie o godzinie dyżuru"
+                      onClick={() => setIncludeExactEnd(!includeExactEnd)}
+                      style={{
+                        backgroundColor: includeExactEnd
+                          ? "lightgray"
+                          : "orange",
+                        border: "none",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        padding: "0 8px",
+                        borderRadius: "4px",
+                        fontSize: "18px",
+                        lineHeight: 1,
+                      }}
+                    >
+                      !
                     </button>
                   </div>
                 </td>
