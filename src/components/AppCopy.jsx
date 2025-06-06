@@ -11,15 +11,27 @@ function DutyScheduler() {
   const [teachers, setTeachers] = useState(teacherData);
   const [selectedDuty, setSelectedDuty] = useState(null);
   const [selectedTeacher, setSelectedTeacher] = useState("");
-  const [availableTeachers, setAvailableTeachers] = useState([]);
   const [selectedDay, setSelectedDay] = useState("Poniedziałek");
   const tableRef = useRef(null);
 
-  useEffect(() => {
-    if (selectedDuty !== null) {
-      filterAvailableTeachers(duties[selectedDuty]);
-    }
-  }, [selectedDuty]);
+  const normalizeTime = (t) => {
+    const [h, m] = t.split(":").map(Number);
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
+  };
+
+  const dayTranslation = {
+    poniedziałek: "monday",
+    wtorek: "tuesday",
+    środa: "wednesday",
+    czwartek: "thursday",
+    piątek: "friday",
+  };
+
+  // useEffect(() => {
+  //   if (selectedDuty !== null) {
+  //     filterAvailableTeachers(duties[selectedDuty]);
+  //   }
+  // }, [selectedDuty, teachers, duties]);
 
   useEffect(() => {
     console.log("Duties updated: ", duties);
@@ -35,47 +47,52 @@ function DutyScheduler() {
     setSelectedTeacher("");
   };
 
-  const filterAvailableTeachers = (duty) => {
-    const available = teachers.filter((teacher) => {
-      const fullName = `${teacher.name}`;
+  const isTeacherAvailable = (teacher, duty) => {
+    const fullName = teacher.name.trim();
+    const dutyDay = duty.day.trim().toLowerCase();
+    const dutyDayEnglish = dayTranslation[dutyDay] || dutyDay;
 
-      const hasLesson = teacher.lessonsPlan.some(
-        (lesson) =>
-          lesson.day === duty.day &&
-          isOverlapping(lesson.from, lesson.to, duty.hour)
-      );
+    // Sprawdź, czy dyżur jest W PRZEDZIALE dostępności nauczyciela
+    const isAvailableAtDutyHour = teacher.lessonsPlan.some((lesson) => {
+      const lessonDay = lesson.day.trim().toLowerCase();
+      const normalizedLessonDay =
+        Object.entries(dayTranslation).find(
+          ([pl, en]) => lessonDay === pl || lessonDay === en
+        )?.[1] || lessonDay;
 
-      const isSpecialDuty =
-        (duty.day === "środa" &&
-          duty.hour === "14:20" &&
-          duty.place === "Dziedziniec") ||
-        duty.place === "Budynek A" ||
-        (duty.day === "czwartek" &&
-          duty.hour === "14:20" &&
-          (duty.place === "Dziedziniec" || duty.place === "Budynek A")) ||
-        (duty.day === "Piątek" &&
-          duty.hour === "13:20" &&
-          (duty.place === "Budynek B parter + WC" ||
-            duty.place === "Budynek B 1piętro")) ||
-        (duty.day === "Poniedziałek" &&
-          duty.hour === "14:20" &&
-          (duty.place === "Budynek A" || duty.place === "Budynek A 1piętro"));
-
-      const hasDuty =
-        !isSpecialDuty &&
-        teacher.duty.some((d) => d.day === duty.day && d.hour === duty.hour);
-
-      const isMarkedName = (name) => name.replaceAll("~~", "");
-
-      const isAlreadyAssigned =
-        Array.isArray(duty.teacher) &&
-        duty.teacher.some((tName) => isMarkedName(tName) === fullName);
       return (
-        !hasLesson && !hasDuty && teacher.isAvailable && !isAlreadyAssigned
+        normalizedLessonDay === dutyDayEnglish &&
+        isWithinRange(lesson.from, lesson.to, duty.hour)
       );
     });
 
-    setAvailableTeachers(available);
+    // Sprawdź, czy nauczyciel już ma przypisany dyżur w tym samym dniu i godzinie
+    const hasDuty = teacher.duty.some((d) => {
+      const dutyEntryDay = d.day.trim().toLowerCase();
+      return (
+        (dutyEntryDay === dutyDay || dutyEntryDay === dutyDayEnglish) &&
+        d.hour === duty.hour
+      );
+    });
+
+    // Sprawdź, czy nauczyciel jest już przypisany do tego dyżuru (żeby nie dublować)
+    const isAlreadyAssigned =
+      Array.isArray(duty.teacher) &&
+      duty.teacher.some((t) => {
+        const normalizedName = t
+          .replace("~~", "")
+          .replace("[manual] ", "")
+          .trim();
+        return normalizedName === fullName;
+      });
+
+    // W końcu sprawdź flagę dostępności i pozostałe warunki
+    return (
+      isAvailableAtDutyHour &&
+      !hasDuty &&
+      teacher.isAvailable &&
+      !isAlreadyAssigned
+    );
   };
 
   function assignDutiesToTeachers(teachers, duties) {
@@ -223,7 +240,7 @@ function DutyScheduler() {
     }
   };
 
-  const isOverlapping = (from, to, hour) => {
+  const isWithinRange = (from, to, hour) => {
     const parseTime = (t) => t.split(":").map(Number);
     const [fromH, fromM] = parseTime(from);
     const [toH, toM] = parseTime(to);
@@ -254,11 +271,11 @@ function DutyScheduler() {
           value={selectedDay}
           onChange={(e) => setSelectedDay(e.target.value)}
         >
-          <option value="Poniedziałek">Poniedziałek</option>
-          <option value="Wtorek">Wtorek</option>
-          <option value="Środa">Środa</option>
-          <option value="Czwartek">Czwartek</option>
-          <option value="Piątek">Piątek</option>
+          <option value="poniedziałek">Poniedziałek</option>
+          <option value="wtorek">Wtorek</option>
+          <option value="środa">Środa</option>
+          <option value="czwartek">Czwartek</option>
+          <option value="piątek">Piątek</option>
         </select>
       </div>
       <table ref={tableRef}>
@@ -326,14 +343,21 @@ function DutyScheduler() {
                       onChange={(e) => setSelectedTeacher(e.target.value)}
                     >
                       <option value="">Wybierz nauczyciela</option>
-                      {availableTeachers.length === 0 ? (
-                        <option value="">Brak dostępnych nauczycieli</option>
+                      {selectedDuty === null ? (
+                        <option value="">Najpierw wybierz dyżur</option>
                       ) : (
-                        availableTeachers.map((teacher) => (
-                          <option key={teacher.id} value={`${teacher.name}`}>
-                            {teacher.name}
-                          </option>
-                        ))
+                        teachers
+                          .filter((teacher) =>
+                            isTeacherAvailable(teacher, duties[selectedDuty])
+                          )
+                          .map((teacher) => (
+                            <option key={teacher.id} value={teacher.name}>
+                              {teacher.name}{" "}
+                              {teacher.isAvailable === false
+                                ? "(NIEOBECNY)"
+                                : ""}
+                            </option>
+                          ))
                       )}
                     </select>
                     <button
