@@ -12,6 +12,7 @@ function DutyScheduler() {
   const [selectedDuty, setSelectedDuty] = useState(null);
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [selectedDay, setSelectedDay] = useState("Poniedziałek");
+  const [selectedRows, setSelectedRows] = useState([]);
   const tableRef = useRef(null);
 
   const normalizeTime = (t) => {
@@ -179,11 +180,11 @@ function DutyScheduler() {
     );
   };
 
-  const handleExportToPNG = () => {
+  const handleExportSelectedToPNG = () => {
     if (tableRef.current) {
       html2canvas(tableRef.current).then((canvas) => {
         const link = document.createElement("a");
-        link.download = "dyzury.png";
+        link.download = "zmiany_dyzurow.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
@@ -253,6 +254,43 @@ function DutyScheduler() {
     return hourMinutes >= fromMinutes && hourMinutes < toMinutes;
   };
 
+  const handleRemoveTeacher = (dutyIndex, teacherString) => {
+    const updatedDuties = [...duties];
+    const dutyToUpdate = updatedDuties[dutyIndex];
+
+    if (Array.isArray(dutyToUpdate.teacher)) {
+      // Usuwamy nauczyciela z listy nauczycieli przy dyżurze
+      dutyToUpdate.teacher = dutyToUpdate.teacher.filter(
+        (t) => t !== teacherString
+      );
+
+      // Aktualizujemy listę nauczycieli w stanie - usuwamy dyżur z nauczyciela
+      const cleanName = teacherString
+        .replaceAll("~~", "")
+        .replace("[manual] ", "")
+        .trim();
+
+      const updatedTeachers = teachers.map((teacher) => {
+        if (teacher.name === cleanName) {
+          // Usuwamy dyżur z listy dyżurów nauczyciela
+          const filteredDuties = teacher.duty.filter(
+            (d) =>
+              !(
+                d.day === dutyToUpdate.day &&
+                d.hour === dutyToUpdate.hour &&
+                d.place === dutyToUpdate.place
+              )
+          );
+          return { ...teacher, duty: filteredDuties };
+        }
+        return teacher;
+      });
+
+      setDuties(updatedDuties);
+      setTeachers(updatedTeachers);
+    }
+  };
+
   return (
     <div className="duty-scheduler">
       <h2>Przypisywanie dyżurów</h2>
@@ -262,8 +300,12 @@ function DutyScheduler() {
         duties={duties}
         setDuties={setDuties}
       />
-      <button className="button export" onClick={handleExportToPNG}>
-        Zapisz tabelę jako PNG
+      <button
+        className="button export"
+        onClick={handleExportSelectedToPNG}
+        disabled={selectedRows.length === 0}
+      >
+        Zapisz zaznaczone dyżury jako PNG
       </button>
       <div className="day-filter">
         <label>Wybierz dzień:</label>
@@ -278,7 +320,7 @@ function DutyScheduler() {
           <option value="piątek">Piątek</option>
         </select>
       </div>
-      <table ref={tableRef}>
+      <table>
         <thead>
           <tr>
             <th>Dzień</th>
@@ -331,6 +373,21 @@ function DutyScheduler() {
                             }}
                           >
                             {cleanName}
+                            <button
+                              className="remove-teacher-btn"
+                              onClick={() => handleRemoveTeacher(index, t)}
+                              title="Usuń nauczyciela"
+                              style={{
+                                background: "transparent",
+                                border: "none",
+                                color: "red",
+                                cursor: "pointer",
+                                fontWeight: "bold",
+                                padding: "0 5px",
+                              }}
+                            >
+                              x
+                            </button>
                           </div>
                         );
                       })
@@ -377,10 +434,58 @@ function DutyScheduler() {
                     Wybierz
                   </button>
                 </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(index)}
+                    onChange={() => {
+                      if (selectedRows.includes(index)) {
+                        setSelectedRows(
+                          selectedRows.filter((i) => i !== index)
+                        );
+                      } else {
+                        setSelectedRows([...selectedRows, index]);
+                      }
+                    }}
+                  />
+                </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <div style={{ position: "absolute", left: "-9999px", top: 0 }}>
+        <table ref={tableRef}>
+          <thead>
+            <tr>
+              <th>Dzień</th>
+              <th>Godzina</th>
+              <th>Miejsce</th>
+              <th>Nauczyciel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {duties
+              .filter((_, idx) => selectedRows.includes(idx))
+              .map((duty, idx) => (
+                <tr key={idx}>
+                  <td>{duty.day}</td>
+                  <td>{duty.hour}</td>
+                  <td>{duty.place}</td>
+                  <td>
+                    {Array.isArray(duty.teacher)
+                      ? duty.teacher.map((t, i) => {
+                          const cleanName = t
+                            .replaceAll("~~", "")
+                            .replace("[manual] ", "");
+                          return <div key={i}>{cleanName}</div>;
+                        })
+                      : duty.teacher}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
