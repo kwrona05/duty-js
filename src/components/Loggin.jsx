@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Loggin.scss";
 
-const USERNAME = "belfer";
-const PASSWORD = "Sp5.belfer";
+const USERNAME = "tester";
+const PASSWORD = "oswiata.tester";
 
 const LogginScreen = ({ onLogin }) => {
   const [username, setUsername] = useState("");
