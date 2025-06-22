@@ -374,7 +374,7 @@ function DutyScheduler() {
               >
                 <td>{duty.day}</td>
                 <td>
-                  {duty.hour} <strong>po {position}</strong>
+                  {duty.hour} <strong>{duty.lesson}</strong>
                 </td>
                 <td>{duty.place}</td>
                 <td>
