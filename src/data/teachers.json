@@ -1,6 +1,6 @@
 [
 {"id": 2, 
-"name": "Boruk", 
+"name": "Lew",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "12:25", "to": "16:00"},
@@ -10,7 +10,7 @@
 "isAvailable": true
 },
 {"id": 3,
-"name": "Dębowski",
+"name": "Żyrafa",
 "lessonsPlan": [
   {"day": "tuesday", "from": "12:35", "to": "16:00"},
   {"day": "wednesday", "from": "12:35", "to": "16:00"}
@@ -19,7 +19,7 @@
 "isAvailable": true
 },
 {"id": 4,
-"name": "Długosz-Pasieka",
+"name": "Sikorka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -31,7 +31,7 @@
 "isAvailable": true
 },
 {"id": 5,
-"name": "Dyła",
+"name": "Dudek",
 "lessonsPlan": [
   {"day": "monday", "from": "8:55", "to": "12:25"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -43,7 +43,7 @@
 "isAvailable": true
 },
 {"id": 6,
-"name": "Dymek",
+"name": "Dzik",
 "lessonsPlan": [
   {"day": "monday", "from": "9:50", "to": "11:30"},
   {"day": "tuesday", "from": "10:45", "to": "12:25"},
@@ -53,7 +53,7 @@
 "isAvailable": true
 },
 {"id": 7,
-"name": "Foryt",
+"name": "Foka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -65,7 +65,7 @@
 "isAvailable": true
 },
 {"id": 8,
-"name": "Jop",
+"name": "Jaskółka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "11:30"},
@@ -77,7 +77,7 @@
 "isAvailable": true
 },
 {"id": 9,
-"name": "Kajetanowicz",
+"name": "Jeż",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "11:30"},
@@ -89,7 +89,7 @@
 "isAvailable": true
 },
 {"id": 10,
-"name": "Kupczyk",
+"name": "Kura",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "12:25"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -101,7 +101,7 @@
 "isAvailable": true
 },
 {"id": 11,
-"name": "Łukaszuk",
+"name": "Zebra",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "9:50", "to": "12:25"},
@@ -113,7 +113,7 @@
 "isAvailable": true
 },
 {"id": 12,
-"name": "Michalik-Maj",
+"name": "Kot",
 "lessonsPlan": [
   {"day": "monday", "from": "11:40", "to": "12:25"},
   {"day": "thursday", "from": "11:40", "to": "12:25"}
@@ -122,7 +122,7 @@
 "isAvailable": true
 },
 {"id": 13,
-"name": "Nogawka",
+"name": "Kuna",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "15:10"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -134,7 +134,7 @@
 "isAvailable": true
 },
 {"id": 14,
-"name": "Rzemińska",
+"name": "Szerszeń",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "11:30"},
   {"day": "tuesday", "from": "7:50", "to": "10:35"},
@@ -146,7 +146,7 @@
 "isAvailable": true
 },
 {"id": 15,
-"name": "Sala",
+"name": "Sroka",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "11:30"},
@@ -158,7 +158,7 @@
 "isAvailable": true
 },
 {"id": 16,
-"name": "Skórzecka",
+"name": "Małpa",
 "lessonsPlan": [
   {"day": "monday", "from": "14:20", "to": "15:10"},
   {"day": "tuesday", "from": "14:20", "to": "15:10"},
@@ -169,7 +169,7 @@
 "isAvailable": true
 },
 {"id": 17,
-"name": "Słomski",
+"name": "Koń",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "7:50", "to": "14:20"},
@@ -181,7 +181,7 @@
 "isAvailable": true
 },
 {"id": 18,
-"name": "Szewczak-Świrska",
+"name": "Ryba",
 "lessonsPlan": [
   {"day": "tuesday", "from": "12:25", "to": "15:10"},
   {"day": "thursday", "from": "12:25", "to": "14:20"}
@@ -190,7 +190,7 @@
 "isAvailable": true
 },
 {"id": 19,
-"name": "Szik I.",
+"name": "Łania",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -202,7 +202,7 @@
 "isAvailable": true
 },
 {"id": 20,
-"name": "Szik S.",
+"name": "Jeleń",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -214,7 +214,7 @@
 "isAvailable": true
 },
 {"id": 21,
-"name": "Szkudlarek",
+"name": "Wróbel",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -226,7 +226,7 @@
 "isAvailable": true
 },
 {"id": 22,
-"name": "Trela",
+"name": "Słoń",
 "lessonsPlan": [
   {"day": "monday", "from": "11:40", "to": "15:10"},
   {"day": "tuesday", "from": "7:50", "to": "12:25"},
@@ -237,7 +237,7 @@
 "isAvailable": true
 },
 {"id": 23,
-"name": "Wadowski",
+"name": "Orzeł",
 "lessonsPlan": [
   {"day": "monday", "from": "8:55", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "13:20"},
@@ -249,7 +249,7 @@
 "isAvailable": true
 },
 {"id": 24,
-"name": "Witkowski",
+"name": "Jastrząb",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "15:10"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -261,7 +261,7 @@
 "isAvailable": true
 },
 {"id": 25,
-"name": "Woźniak",
+"name": "Waleń",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "14:20"},
   {"day": "tuesday", "from": "8:45", "to": "16:00"},
@@ -273,7 +273,7 @@
 "isAvailable": true
 },
 {"id": 26,
-"name": "Wrona",
+"name": "Kruk",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "14:20"},
@@ -285,7 +285,7 @@
 "isAvailable": true
 },
 {"id": 27,
-"name": "Wrotna",
+"name": "Łosoś",
 "lessonsPlan": [
   {"day": "monday", "from": "7:50", "to": "13:20"},
   {"day": "tuesday", "from": "7:50", "to": "15:10"},
@@ -297,7 +297,7 @@
 "isAvailable": true
 },
 {"id": 28,
-"name": "Wysocka",
+"name": "Pantera",
 "lessonsPlan": [
   {"day": "monday", "from": "10:35", "to": "15:10"},
   {"day": "wednesday", "from": "7:50", "to": "11:30"},
